@@ -67,7 +67,7 @@
         <div class="container px-0">
             <nav class="navbar navbar-light navbar-expand-xl py-3">
                 <a href="index.html" class="navbar-brand d-flex align-items-center">
-                    <img src="img/logo.png" alt="Thembelisha Day Care" style="height: 80px;" class="me-3">
+                    <img src="img/thembelisha-logo.png" alt="Thembelisha Day Care" style="height: 80px;" class="me-3">
                     <h1 class="text-primary display-6 mb-0">Thembelisha<span class="text-secondary"> Day Care</span>
                     </h1>
                 </a>
@@ -421,6 +421,12 @@
         })();
 
         window.onload = function() {
+            // Fallback spinner removal
+            const spinner = document.getElementById('spinner');
+            if (spinner) {
+                spinner.classList.remove('show');
+            }
+
             // Newsletter Form Logic
             const newsletterForm = document.getElementById('newsletter-form');
             if (newsletterForm) {
