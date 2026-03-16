@@ -60,6 +60,40 @@
     });
 
 
+    // Footer Gallery carousel
+    $(".footer-gallery-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1000,
+        center: false,
+        dots: false,
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: [
+            '<i class="fa fa-arrow-left"></i>',
+            '<i class="fa fa-arrow-right"></i>'
+        ],
+        responsiveClass: true,
+        responsive: {
+            0:{
+                items:1
+            },
+            576:{
+                items:2
+            },
+            768:{
+                items:3
+            },
+            992:{
+                items:3
+            },
+            1200:{
+                items:3
+            }
+        }
+    });
+
+
     // Modal Video
     $(document).ready(function () {
         var $videoSrc;

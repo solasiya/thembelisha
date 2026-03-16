@@ -613,6 +613,12 @@ h6,
     height: 100%;
 }
 
+.team .team-item img {
+    height: 450px;
+    object-fit: cover;
+    width: 100%;
+}
+
 .team .team-item .team-icon {
     position: absolute;
     bottom: 120px;
@@ -702,5 +708,31 @@ h6,
 
 .footer-item a.text-body:hover {
     color: var(--bs-secondary) !important;
+}
+
+.footer-gallery-carousel .owl-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.footer-gallery-carousel .owl-nav .owl-prev,
+.footer-gallery-carousel .owl-nav .owl-next {
+    width: 30px;
+    height: 30px;
+    background: var(--bs-primary);
+    color: var(--bs-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    transition: 0.5s;
+}
+
+.footer-gallery-carousel .owl-nav .owl-prev:hover,
+.footer-gallery-carousel .owl-nav .owl-next:hover {
+    background: var(--bs-secondary);
+    color: var(--bs-primary);
 }
 /*** Footer End ***/
