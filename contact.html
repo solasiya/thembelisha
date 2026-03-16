@@ -167,19 +167,19 @@
                 <div class="row g-5 mb-5">
                     <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                         <div class="d-flex w-100 border border-primary p-4 rounded bg-white">
-                            <i class="fas fa-map-marker-alt fa-2x text-primary me-4"></i>
-                            <div class="">
+                            <i class="fas fa-map-marker-alt fa-2x text-primary me-4 flex-shrink-0"></i>
+                            <div class="overflow-hidden">
                                 <h4>Address</h4>
-                                <p class="mb-2">EXT 6 PALMRIDGE, 8350& 8351 SEFOKABOLEA STREET, KATLEHONG</p>
+                                <p class="mb-2 text-break" style="font-size: 0.9rem;">EXT 6 PALMRIDGE, 8350& 8351 SEFOKABOLEA STREET, KATLEHONG</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                         <div class="d-flex w-100 border border-primary p-4 rounded bg-white">
-                            <i class="fas fa-envelope fa-2x text-primary me-4"></i>
-                            <div class="">
+                            <i class="fas fa-envelope fa-2x text-primary me-4 flex-shrink-0"></i>
+                            <div class="overflow-hidden">
                                 <h4>Mail Us</h4>
-                                <p class="mb-2">info@thembelishadaycare.co.za</p>
+                                <p class="mb-2 text-break" style="font-size: 0.9rem;">info@thembelishadaycare.co.za</p>
                             </div>
                         </div>
                     </div>
@@ -195,14 +195,14 @@
                 </div>
                 <div class="row g-5">
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
-                        <form action="">
-                            <input type="text" class="w-100 form-control py-3 mb-5 border-primary"
-                                placeholder="Your Name">
-                            <input type="email" class="w-100 form-control py-3 mb-5 border-primary"
-                                placeholder="Enter Your Email">
-                            <textarea class="w-100 form-control mb-5 border-primary" rows="8" cols="10"
-                                placeholder="Your Message"></textarea>
-                            <button class="w-100 btn btn-primary form-control py-3 border-primary text-white bg-primary"
+                        <form id="contact-form">
+                            <input type="text" id="user_name" name="user_name" class="w-100 form-control py-3 mb-5 border-primary"
+                                placeholder="Your Name" required>
+                            <input type="email" id="user_email" name="user_email" class="w-100 form-control py-3 mb-5 border-primary"
+                                placeholder="Enter Your Email" required>
+                            <textarea id="message" name="message" class="w-100 form-control mb-5 border-primary" rows="8" cols="10"
+                                placeholder="Your Message" required></textarea>
+                            <button id="submit-btn" class="w-100 btn btn-primary form-control py-3 border-primary text-white bg-primary"
                                 type="submit">Submit</button>
                         </form>
                     </div>
@@ -236,13 +236,13 @@
                             children feel safe, respected, and encouraged to discover who they are.</p>
                         <div class="border border-primary p-3 rounded bg-light">
                             <h5 class="mb-3">Newsletter</h5>
-                            <div class="position-relative mx-auto border border-primary rounded"
+                            <form id="newsletter-form" class="position-relative mx-auto border border-primary rounded"
                                 style="max-width: 400px;">
-                                <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text"
-                                    placeholder="Your email">
-                                <button type="button"
+                                <input id="subscriber_email" name="subscriber_email" class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email"
+                                    placeholder="Your email" required>
+                                <button type="submit" id="newsletter-btn"
                                     class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2 text-white">SignUp</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -395,6 +395,69 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- EmailJS Integration -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Replace with your actual Public Key from EmailJS
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+
+        window.onload = function() {
+            // Contact Form Logic
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const btn = document.getElementById('submit-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = 'Sending...';
+                    btn.disabled = true;
+
+                    // These IDs must match your EmailJS Service and Template IDs
+                    emailjs.sendForm('service_thembelisha', 'template_thembelisha', this)
+                        .then(function() {
+                            alert('Your message has been sent successfully!');
+                            contactForm.reset();
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                        }, function(error) {
+                            alert('FAILED to send the message. Please try again later. Error: ' + JSON.stringify(error));
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                        });
+                });
+            }
+
+            // Newsletter Form Logic
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const btn = document.getElementById('newsletter-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '...';
+                    btn.disabled = true;
+
+                    // Replace 'service_thembelisha' and 'template_newsletter' with your actual IDs
+                    emailjs.sendForm('service_thembelisha', 'template_newsletter', this)
+                        .then(function() {
+                            alert('Thank you for subscribing to our newsletter!');
+                            newsletterForm.reset();
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                        }, function(error) {
+                            alert('Subscription failed. Please try again later.');
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                        });
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>

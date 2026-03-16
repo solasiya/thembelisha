@@ -1,0 +1,16 @@
+{
+  "name": "thembelisha-daycare",
+  "version": "1.0.0",
+  "description": "Website for Thembelisha Day Care & Pre-School",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

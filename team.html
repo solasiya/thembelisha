@@ -252,13 +252,13 @@
                             children feel safe, respected, and encouraged to discover who they are.</p>
                         <div class="border border-primary p-3 rounded bg-light">
                             <h5 class="mb-3">Newsletter</h5>
-                            <div class="position-relative mx-auto border border-primary rounded"
+                            <form id="newsletter-form" class="position-relative mx-auto border border-primary rounded"
                                 style="max-width: 400px;">
-                                <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text"
-                                    placeholder="Your email">
-                                <button type="button"
+                                <input id="subscriber_email" name="subscriber_email" class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email"
+                                    placeholder="Your email" required>
+                                <button type="submit" id="newsletter-btn"
                                     class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2 text-white">SignUp</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -411,6 +411,43 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- EmailJS Integration -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Replace with your actual Public Key from EmailJS
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+
+        window.onload = function() {
+            // Newsletter Form Logic
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const btn = document.getElementById('newsletter-btn');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '...';
+                    btn.disabled = true;
+
+                    // Replace 'service_thembelisha' and 'template_newsletter' with your actual IDs
+                    emailjs.sendForm('service_thembelisha', 'template_newsletter', this)
+                        .then(function() {
+                            alert('Thank you for subscribing to our newsletter!');
+                            newsletterForm.reset();
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                        }, function(error) {
+                            alert('Subscription failed. Please try again later.');
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                        });
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>
