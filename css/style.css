@@ -635,6 +635,11 @@ h6,
     opacity: 1;
 }
 
+.team .team-item .team-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .team .team-item .team-content,
 .team .team-item .team-content h4,
 .team .team-item .team-content p {
