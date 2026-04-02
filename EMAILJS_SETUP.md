@@ -10,7 +10,7 @@ This guide explains how to configure EmailJS to enable the contact form on your 
 1. In the dashboard, go to **Email Services** and click **Add New Service**.
 2. Select your email provider (e.g., Gmail, Outlook).
 3. Connect your account and click **Create Service**.
-4. **Important**: Note your **Service ID** (e.g., `service_thembelisha`). You will need to replace this in the `contact.html` file.
+4. **Important**: Note your **Service ID** (e.g., `service_p6yfcxp`). You will need to replace this in the `contact.html` file.
 
 ## Step 3: Create an Email Template
 1. Go to **Email Templates** and click **Create New Template**.
@@ -22,7 +22,7 @@ This guide explains how to configure EmailJS to enable the contact form on your 
    - For the **Newsletter Form**:
      - `{{subscriber_email}}`: The email of the new subscriber.
 3. Click **Save**.
-4. **Important**: Note your **Template IDs** (e.g., `template_thembelisha` and `template_newsletter`). You will need to replace these in the HTML files.
+4. **Important**: Note your **Template IDs** (e.g., `template_11bb4h5` and `template_newsletter`). You will need to replace these in the HTML files.
 
 ## Step 4: Get Your Public Key
 1. Go to **Account** -> **Public Key**.
@@ -37,11 +37,11 @@ This guide explains how to configure EmailJS to enable the contact form on your 
 
 ```javascript
 // Example of updated code:
-emailjs.init("abcd1234efgh5678"); // Your Public Key
+emailjs.init("o6orZMXCf5Et4IB-f"); // Your Public Key
 
-emailjs.sendForm('service_custom_id', 'template_contact_id', this)
+emailjs.sendForm('service_p6yfcxp', 'template_11bb4h5', this)
 // and
-emailjs.sendForm('service_custom_id', 'template_newsletter_id', this)
+emailjs.sendForm('service_p6yfcxp', 'template_newsletter', this)
 ```
 
 ## Step 6: Test the Form
